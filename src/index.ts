@@ -2,11 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import getEnv from './helpers/envHandler.js';
+import getEnv from './helpers/getEnv.js';
 import connectToDB from './initializers/db.js';
 import sampleRouter from './routes/sample.route.js';
-import errorHandler from './helpers/errorHandler.js';
+import errorHandler from './middleware/errorHandler.js';
 import protectedRouter from './routes/protected.route.js';
+import 'express-async-errors';
 
 const app = express();
 const PORT = getEnv.PORT;

@@ -5,10 +5,10 @@ const envSchema = z.object({
   ENVIRONMENT: z.string(),
   DB_URL: z.string(),
   PORT: z.string().transform(Number),
-  JWT_KEY: z.string()
+  JWT_KEY: z.string(),
 });
 
-const envHandler = () => {
+const getEnvHandler = () => {
   const parsed = envSchema.safeParse(process.env);
 
   if (!parsed.success) {
@@ -18,6 +18,6 @@ const envHandler = () => {
   return parsed.data;
 }
 
-const getEnv = envHandler();
+const getEnv = getEnvHandler();
 
 export default getEnv;

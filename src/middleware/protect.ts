@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import envGet from '../helpers/envHandler.js';
+import envGet from '../helpers/getEnv.js';
 import logger from '../../logs/logger.js';
 
 

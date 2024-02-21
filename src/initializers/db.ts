@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import envGet from '../helpers/envHandler.js';
+import envGet from '../helpers/getEnv.js';
 
 const URL: string = envGet.DB_URL;
 
@@ -9,6 +9,7 @@ async function connectToDB(): Promise<void> {
         console.log('Connected to Database!');
     } catch (error) {
         console.error('Error connecting to the database:', error);
+        process.exit(1);
     }
 }
 
