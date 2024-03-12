@@ -3,6 +3,9 @@
 JWT_KEY=$(openssl rand -hex 32)
 MONGO_PASSWORD=$(openssl rand -hex 32)
 
+echo "Please enter the container name:"
+read CONTAINER_NAME
+
 # Copy .env.sample to .env
 cp .env.sample .env
 
@@ -10,7 +13,7 @@ cp .env.sample .env
 sed -i "s/JWT_KEY=.*$/JWT_KEY=$JWT_KEY/" .env
 sed -i "s/password/$MONGO_PASSWORD/" .env
 
-docker run --name mongodb -d -p 27017:27017 \
+docker run --name $CONTAINER_NAME -d -p 27017:27017 \
       -e MONGO_INITDB_ROOT_USERNAME=admin \
       -e MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD \
       mongodb/mongodb-community-server
