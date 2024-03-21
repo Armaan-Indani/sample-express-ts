@@ -1,34 +1,34 @@
-import * as winston from 'winston';
+import * as winston from 'winston'
 
 const formatconfig = winston.format.combine(
   winston.format.timestamp({
-    format: 'YYYY-MM-DD HH:mm:ss',
+    format: 'YYYY-MM-DD HH:mm:ss'
   }),
   winston.format.simple(),
   winston.format.json(),
   winston.format.prettyPrint(),
   winston.format.errors({ stack: true })
-);
+)
 
-const createLog = (filename: string, level: string) =>
+const createLog = (filename: string, level: string): winston.Logger =>
   winston.createLogger({
     transports: [
       new winston.transports.File({
         filename: `logs/${filename}.log`,
         level,
-        format: formatconfig,
-      }),
-    ],
-  });
+        format: formatconfig
+      })
+    ]
+  })
 
-const errorLogger = createLog('error', 'error');
-const infoLogger = createLog('info', 'info');
-const protectLogger = createLog('protect', 'warn');
+const errorLogger = createLog('error', 'error')
+const infoLogger = createLog('info', 'info')
+const protectLogger = createLog('protect', 'warn')
 
 const logger = {
   info: (log: string) => infoLogger.info(log),
   error: (log: string) => errorLogger.error(log),
-  protect: (log: string) => protectLogger.warn(log),
-};
+  protect: (log: string) => protectLogger.warn(log)
+}
 
-export default logger;
+export default logger
