@@ -16,4 +16,4 @@ sed -i "s/password/$MONGO_PASSWORD/" .env
 docker run --name $CONTAINER_NAME -d -p 27017:27017 \
       -e MONGO_INITDB_ROOT_USERNAME=admin \
       -e MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD \
-      mongodb/mongodb-community-server
+      mongo
